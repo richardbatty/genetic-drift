@@ -23,4 +23,10 @@ describe('randomWalk', function() {
       newPopulation.length.should.eql(2);
     });
   });
-})
+
+  describe('stepGenerator', function() {
+    it('should return a boolean value', function() {
+      randomWalkFactory.stepGenerator().should.be.a('boolean');
+    })
+  })
+});
