@@ -14,13 +14,13 @@ describe('randomWalk', function() {
 
   describe('when given a population', function() {
     beforeEach(function() {
-      this.initialPopulation = ['a', 'a', 'a', 'a', 'a', 'b', 'b', 'b', 'b', 'b'];
+      this.initialPopulation = [5, 5];
       this.randomWalk = randomWalkFactory.randomWalkFactory(this.initialPopulation);
     });
 
     it('should return a population of the same size', function() {
       var newPopulation = this.randomWalk(this.initialPopulation);
-      newPopulation.length.should.eql(10);
+      newPopulation.length.should.eql(2);
     });
   });
 })
