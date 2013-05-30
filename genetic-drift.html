@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <script>
+
+    function nextFrequency (last_frequency, step_size) {
+      var max = 1
+        , min = -1
+        ;
+
+      return last_frequency + (Math.floor(Math.random() * (max - min + 1)) + min) * step_size;
+    }
+
+    function generatePopulation (proportion, size) {
+
+      var population = []
+        , size_a = size * proportion
+        , size_b = size * (1 - proportion);
+
+      for (var i = 0; i < size; i++) {
+        population.push("a");
+      };
+      for (var i = 0; i < size_b; i++) {
+        population.push("b");
+      };
+
+      return population;
+    }
+
+    function shuffleArray ( myArray ) {
+      // Uses fischer-yates shuffle
+
+      var i = myArray.length
+        , j
+        , temp
+        ;
+
+      if ( i === 0 ) return false;
+      while ( --i ) {
+        j = Math.floor( Math.random() * ( i + 1 ) );
+        temp = myArray[i];
+        myArray[i] = myArray[j]; 
+        myArray[j] = temp;
+      }
+
+      return myArray;
+    };
+
+    var data = shuffleArray(generatePopulation(0.49, 10));
+    console.log(data);
+
+    var svg = d3.select("body").append("svg");
+
+    var circles = svg.selectAll("circle")
+                      .data(data)
+                      .enter()
+                      .append("circle");
+
+    circles.attr("cx", function(d, i) {
+              return (i * 15) + 50;
+            })
+            .attr("cy", 50)
+            .attr("r", 5)
+            .attr("fill", function(d, i) {
+              if (d === "a") {
+                return "blue";
+              } else if (d === "b") {
+                return "red";
+              }
+            });
+
+  </script>
+  
+</body>
+</html>
