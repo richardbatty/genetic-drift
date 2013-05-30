@@ -1,9 +1,9 @@
 function randomWalkFactory () {
-  return function () {
-    // body...
+  return function (population) {
+    return population;
   }
 }
 
 module.exports = {
   randomWalkFactory: randomWalkFactory
-  };
+};
